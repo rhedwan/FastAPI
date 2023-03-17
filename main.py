@@ -13,7 +13,9 @@ def get_all_blog():
     return "All blogs" """
 
 # making query parameters
-@app.get('/blog/all', tags=['blog'])
+@app.get('/blog/all', tags=['blog'], summary="Retrieve all blogs",
+description="This api call, stimulate get all blogs",
+response_description="The list of available blogs")
 def get_all_blog(page = 1, page_size: Optional[int] = 2):
     return {
         "message":f"All {page_size} blogs on page {page}"
@@ -24,6 +26,10 @@ def get_all_blog(page = 1, page_size: Optional[int] = 2):
 @app.get('/blog/{id}/comments/{comment_id}', tags=['blog', 'comment'])
 def get_comment_blog(id: int, comment_id: int, valid:bool= True, \
     username: Optional[str]=None):
+
+    """
+    Stimulate retrieve all comments
+    """
     return {
         "message" : f"blog_id {id}, comment_id {comment_id}, valid {valid} username {username}"
     }
