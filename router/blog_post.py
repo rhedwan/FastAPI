@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query, Body
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional , List
 
 router = APIRouter(prefix='/blog', tags=['blog'])
 
@@ -26,12 +26,14 @@ def create_comment(blog:BlogModel,
  description="Some random string",
  alias="commentId"),
  content:str =Body(..., min_length=10,
- regex="^[a-z\s]*$")):
+ regex="^[a-z\s]*$"),
+ v:Optional[List[str]] = Query(None)):
     return{
         "data": blog,
         "id": id,
         "comment_id" : comment_id,
-        "content": content
+        "content": content,
+        "version": v
     }
 
 
