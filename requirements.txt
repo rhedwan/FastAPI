@@ -27,3 +27,5 @@ uvloop==0.17.0
 watchfiles==0.18.1
 websockets==10.4
 SQLAlchemy==1.4.40
+passlib
+bcrypt
