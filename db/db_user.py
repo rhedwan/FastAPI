@@ -23,3 +23,24 @@ def get_all_users(db:Session):
 
 def get_user(db:Session, id):
     return db.query(DBUser).filter(DBUser.id == id).first()
+
+def update_user(db:Session, id:int, request:UserBase):
+    user = db.query(DBUser).filter(DBUser.id == id)
+    # Handle any exceptions
+
+    user.update({
+        DBUser.username : request.username,
+        DBUser.email : request.email,
+        DBUser.password : Hash.bcrypt(request.username),
+    })
+
+    db.commit()
+    return 'ok'
+
+def delete_user(db:Session, id:int):
+    user = db.query(DBUser).filter(DBUser.id == id).first()
+    # Handle any exceptions
+    db.delete(user)
+    db.commit()
+
+    return 'ok'

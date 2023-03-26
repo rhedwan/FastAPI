@@ -23,3 +23,13 @@ def create_user(db:Session = Depends(get_db)):
 @router.get("/{id}", response_model=UserDisplay)
 def create_user(id: int, db:Session = Depends(get_db)):
     return db_user.get_user(db, id)
+
+# Update User
+@router.post('/{id}/request')
+def update_user(id:int, request:UserBase, db:Session = Depends(get_db)):
+    return db_user.update_user(db, id, request)
+
+# Delete User
+@router.get('/delete/{id}')
+def delete_user(id:int, db:Session = Depends(get_db)):
+    return db_user.delete_user(db, id)
