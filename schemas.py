@@ -6,6 +6,8 @@ class Article(BaseModel):
     title : str
     content : str
     published : bool
+    class Config():
+        orm_mode = True
 
 class UserBase(BaseModel):
     username: str
@@ -16,7 +18,7 @@ class UserBase(BaseModel):
 class UserDisplay(BaseModel):
     username: str
     email : str
-    # items : List[Article] = []
+    items : List[Article] = []
     class Config():
         orm_mode = True
 
