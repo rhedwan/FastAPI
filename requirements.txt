@@ -29,3 +29,4 @@ websockets==10.4
 SQLAlchemy==1.4.40
 passlib
 bcrypt
+python-jose

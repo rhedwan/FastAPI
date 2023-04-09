@@ -5,13 +5,16 @@ from router import blog_get, blog_post, user, article, product
 from db import models
 from db.database import engine
 from exceptions import StoryException
+from auth import authentication
 
 app = FastAPI()
+app.include_router(authentication.router)
 app.include_router(blog_get.router)
 app.include_router(blog_post.router)
 app.include_router(user.router)
 app.include_router(article.router)
 app.include_router(product.router)
+
 
 @app.get('/', tags=['blog'])
 def index():
